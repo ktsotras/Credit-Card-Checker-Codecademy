@@ -100,9 +100,12 @@ const fixInvalidCard = invalidCard => {
     newCard.push(Math.floor(Math.random() * 10));
   }
   
-  //insert a zero to complete the Luhn algorithm correctly and then remove it
+  //insert a zero to complete the Luhn algorithm correctly and then remove it only if card is not valid
   newCard.push(0);
   let lastDigit = luhnCheck(newCard);
+  if(lastDigit % 10 === 0)
+    return newCard;
+  
   newCard.pop();
   
   //use the returned total to calculate the last digit needed in order to validate the new random credit card number
